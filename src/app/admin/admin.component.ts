@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../user.model'
+import { IUser } from '../user.model' ;
+import { UsersService } from '../users.service' ;
 
 @Component({
   selector: 'app-admin',
@@ -8,11 +9,21 @@ import { IUser } from '../user.model'
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService : UsersService) { }
 
 
-    users:IUser[] = [
-    {
+    users:IUser[] ;
+
+  ngOnInit() {
+    this.users = this.userService.getUsers() ;
+  }
+
+
+
+}
+
+/*
+{
       username : "Arjun",
       email    : "test@email.com",
       phonenumber :1234567890,
@@ -30,11 +41,4 @@ export class AdminComponent implements OnInit {
       phonenumber :3456789012,
       phonenumbeer :1234567890
     }
-  ] ;
-
-  ngOnInit() {
-  }
-
-
-
-}
+    */
